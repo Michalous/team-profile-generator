@@ -103,3 +103,4 @@ man = new Manager('jozef', '34', 'a@f.fg', '234')
 
 console.log(empl.getRole())
 console.log(man.getRole())
+console.log(man.officeNumber)
