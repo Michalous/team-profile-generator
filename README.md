@@ -9,7 +9,7 @@ Your task is to take the given starter code and convert it into a working Node.j
 As a manager a user want to generate a webpage that displays my team's basic info so that a user have quick access to their emails and GitHub profiles.
 
 ## Instructions
- 
+
 * Create a command-line application that accepts accepts user input using the provided starter code.   
   * Create classes for each team member provided and export them. The tests for these classes (in the `_tests_` directory) must ALL pass.     
     * The first class is an `Employee` parent class with the following properties and methods:       
