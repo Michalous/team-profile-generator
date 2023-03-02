@@ -13,10 +13,6 @@ const render = require("./src/page-template.js");
 
 let list_of_employees = []
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
-// Inquirer
-
 newEmployee('newManager')
 
 function chooseOption() {
@@ -40,6 +36,12 @@ function chooseOption() {
             }
             else {
             console.log(answer.options)
+            let newHTML = render(list_of_employees)
+            fs.writeFile(outputPath, newHTML, function (err, file) {
+                if (err) throw err;
+                console.log('Saved!');
+            })
+            console.log(newHTML)
             }
         })
 }
