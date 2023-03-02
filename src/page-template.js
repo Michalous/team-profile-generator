@@ -95,6 +95,15 @@ module.exports = team => {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <style>
+        .employee-card {
+            width: 270px;
+            margin: 5px;
+        }
+        .team-area {
+            flex-wrap: wrap;
+        }
+    </style>
 </head>
 
 <body>
