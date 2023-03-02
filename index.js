@@ -11,10 +11,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-let list_of_employees = []
+let list_of_employees = [] // objects with data about each employee go here
 
-newEmployee('newManager')
+newEmployee('newManager') // starts the program with questions about new manager
 
+
+// function to let user choose what to do after they answered all questions about new employee
 function chooseOption() {
     inquirer
         .prompt([
@@ -63,6 +65,7 @@ function newEmployee(employee) {
             message: 'Email address:'
         },
     ]
+    // dynamically generate the last question depending on the employee's role
     if (employee == 'newManager') {
         questions.push({
             name: 'officeNumber',
@@ -96,6 +99,7 @@ function newEmployee(employee) {
         })
 }
 
+// Depending on the new employee's role saves data in new object which is then appended to list_of_employees
 function appendEmployee(answer, employee) {
     if (employee == 'newManager') {
         let newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber)
