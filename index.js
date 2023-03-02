@@ -11,9 +11,85 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+let list_of_employees = []
+let teamMember = 'newManager'
+
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 // Inquirer
+
+newEmployee(teamMember)
+
+function chooseOption() {
+    inquirer
+        .prompt([
+            {
+                name: 'options',
+                type: 'list',
+                message: 'What do you want to do next?',
+                choices: ["Add an engineer",
+                          "Add an intern",
+                          "Finish building team"]
+            }
+        ])
+        .then((answer) => {
+            console.log(answer.options)
+        })
+}
+
+
+function newEmployee(employee) {
+    let questions = [
+        {
+            name: 'name',
+            type: 'input',
+            message: "name:"
+        },
+        {
+            name: 'id',
+            type: 'input',
+            message: "Employee ID:"
+        },
+        {
+            name: 'email',
+            type: 'input',
+            message: 'Email address:'
+        },
+    ]
+    if (employee == 'newManager') {
+        questions.push({
+            name: 'officeNumber',
+            type: 'input',
+            message: 'Office number:'
+        })
+        questions[0]['message'] = "Manager's name:"
+    }
+    else if (employee == 'newEngineer') {
+        questions.push({
+            name: 'github',
+            type: 'input',
+            message: 'GitHub username:'
+        })
+        questions[0]['message'] = "Engineer's name:"
+    }
+    else {
+        questions.push({
+            name: 'school',
+            type: 'input',
+            message: 'School:'
+        })
+        questions[0]['message'] = "Intern's name:"
+    }
+
+    inquirer
+        .prompt(questions)
+        .then((answer) => {
+            var newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber)
+            list_of_employees.push(newManager)
+            console.log(list_of_employees)
+            chooseOption()
+        })
+}
 
 // function init() {
 //     inquirer
@@ -98,9 +174,9 @@ const render = require("./src/page-template.js");
 // init()
 
 
-empl = new Employee("pepa", '23', 'a@a.xz')
-man = new Manager('jozef', '34', 'a@f.fg', '234')
+// empl = new Employee("pepa", '23', 'a@a.xz')
+// man = new Manager('jozef', '34', 'a@f.fg', '234')
 
-console.log(empl.getRole())
-console.log(man.getRole())
-console.log(man.officeNumber)
+// console.log(empl.getRole())
+// console.log(man.getRole())
+// console.log(man.officeNumber)
