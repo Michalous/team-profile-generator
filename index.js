@@ -12,13 +12,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./src/page-template.js");
 
 let list_of_employees = []
-let teamMember = 'newManager'
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
 // Inquirer
 
-newEmployee(teamMember)
+newEmployee('newManager')
 
 function chooseOption() {
     inquirer
@@ -33,7 +32,15 @@ function chooseOption() {
             }
         ])
         .then((answer) => {
+            if (answer.options == 'Add an engineer') {
+                newEmployee("newEngineer")
+            }
+            else if (answer.options == 'Add an intern') {
+                newEmployee("newIntern")
+            }
+            else {
             console.log(answer.options)
+            }
         })
 }
 
@@ -84,11 +91,27 @@ function newEmployee(employee) {
     inquirer
         .prompt(questions)
         .then((answer) => {
-            var newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber)
-            list_of_employees.push(newManager)
-            console.log(list_of_employees)
+            appendEmployee(answer, employee)
             chooseOption()
         })
+}
+
+function appendEmployee(answer, employee) {
+    if (employee == 'newManager') {
+        let newManager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber)
+        list_of_employees.push(newManager)
+        console.log(list_of_employees)
+    }
+    else if (employee == 'newEngineer') {
+        let newEngineer = new Engineer(answer.name, answer.id, answer.email, answer.github)
+        list_of_employees.push(newEngineer)
+        console.log(list_of_employees)
+    }
+    else {
+        let newIntern = new Intern(answer.name, answer.id, answer.email, answer.school)
+        list_of_employees.push(newIntern)
+        console.log(list_of_employees)
+    }
 }
 
 // function init() {
